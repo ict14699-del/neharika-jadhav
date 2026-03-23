@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>WPD PR23</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        nav {
+            background: red;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            nav h2 {
+                color: white;
+            }
+
+            nav ul {
+                list-style: none;
+                display: flex;
+            }
+
+                nav ul li {
+                    margin-left: 20px;
+                }
+
+                    nav ul li a {
+                        text-decoration: none;
+                        color: white;
+                        font-weight: bold;
+                    }
+
+                        nav ul li a:hover {
+                            color: yellow;
+                        }
+
+        header {
+            background: linear-gradient(to right,#1a73e8,#00c6ff);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .container {
+            padding: 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: hotpink;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background: green;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+            .btn:hover {
+                background: #0b4dbb;
+            }
+
+        footer {
+            background: green;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        /* FORM STYLE */
+        .form-box {
+            padding: 30px;
+            margin: 40px;
+            background: #f4f4f4;
+            border-radius: 10px;
+        }
+
+            .form-box input, .form-box textarea {
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                margin-bottom: 15px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>MSBTE WPD Practicals</h1>
+        <p>Interactive Practical Website</p>
+    </header>
+
+    <nav>
+        <h2>WPD Practicals</h2>
+        <ul>
+            <li><a href="https://www.w3schools.com/html/html_intro.asp" target="_blank">Home</a></li>
+            <li><a href="#">Practicals</a></li>
+            <li><a href="https://mail.google.com/mail/u/0/" target="_blank">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2 style="margin-bottom:20px;">List of Practicals</h2>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Practical 1</h3>
+                <p>Basic HTML Page</p>
+                <a class="btn" href="Pr1.html" target="_blank">View</a>
+            </div>
+
+            <div class="card">
+                <h3>Practical 2</h3>
+                <p>Text Formatting Tags</p>
+                <a class="btn" href="p2.html">View</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 MSBTE WPD Practical Website</p>
+    </footer>
+
+    <!-- CONTACT INFO -->
+    <h2 style="padding:20px;">Contact Information</h2>
+    <p style="padding-left:20px;"><b>Name:</b> Chetan S Mogare</p>
+
+    <!-- FORM -->
+    <div class="form-box">
+        <h2>Contact Form</h2>
+
+        <form id="contactForm">
+            <label>Name:</label>
+            <input type="text" name="name" required>
+
+            <label>Email:</label>
+            <input type="email" name="email" required>
+
+            <label>Message:</label>
+            <textarea name="message" required></textarea>
+
+            <label>Date:</label>
+            <input type="date" name="date" required>
+
+            <button type="submit" class="btn">Submit</button>
+        </form>
+
+        <p id="responseMsg"></p>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbzJLU_6RRen8LBLtd2eEMDqvqSlk4Pilt61Ui1_uplqhhJsVE19detDTlr_AayLDQnHwQ/exec";
+
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let formData = new FormData(this);
+
+    fetch(scriptURL, {
+        method: "POST",
+        body: formData
+    })
+    .then(response => {
+        document.getElementById("responseMsg").innerHTML = "✅ Form submitted successfully!";
+        document.getElementById("contactForm").reset();
+    })
+    .catch(error => {
+        document.getElementById("responseMsg").innerHTML = "❌ Error submitting form!";
+    });
+});
+    </script>
+
+</body>
+</html>
